@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://d1anhxn4nxnjh"]
+
+[ext_resource type="Texture2D" uid="uid://dynevups5und8" path="res://sprites/Sprite Pack 6/3 - Skeleton/Standing (32 x 32).png" id="1_fl07q"]
+[ext_resource type="Script" uid="uid://ctw5pu0ayh522" path="res://esqueleto.gd" id="1_xvng2"]
+[ext_resource type="Texture2D" uid="uid://c2trnnsic2aqd" path="res://sprites/Sprite Pack 6/3 - Skeleton/Limping_Movement (32 x 32).png" id="3_lrdmc"]
+[ext_resource type="Script" uid="uid://bgguwbcsttdv7" path="res://hitbox.gd" id="4_qahio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvng2"]
+size = Vector2(23, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qahio"]
+atlas = ExtResource("3_lrdmc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6t52"]
+atlas = ExtResource("3_lrdmc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5oya"]
+atlas = ExtResource("3_lrdmc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7kkk"]
+atlas = ExtResource("3_lrdmc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvepm"]
+atlas = ExtResource("3_lrdmc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdnsm"]
+atlas = ExtResource("3_lrdmc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrdmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fl07q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qahio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6t52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5oya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7kkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvepm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdnsm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrdmc"]
+size = Vector2(17, 27)
+
+[node name="esqueleto" type="CharacterBody2D" unique_id=424537419]
+script = ExtResource("1_xvng2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1507202416]
+position = Vector2(91.5, 49.5)
+shape = SubResource("RectangleShape2D_xvng2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1044166023]
+position = Vector2(91, 47)
+sprite_frames = SubResource("SpriteFrames_lrdmc")
+animation = &"walk"
+frame_progress = 0.5030331
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1655452677]
+script = ExtResource("4_qahio")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1501049317]
+position = Vector2(93.5, 49.5)
+shape = SubResource("RectangleShape2D_lrdmc")
+debug_color = Color(0.9543254, 1.347661e-06, 0.5515211, 0.41960785)
+
+[node name="wall_detector" type="RayCast2D" parent="." unique_id=1765528685]
+position = Vector2(91, 49)
+target_position = Vector2(-12, 14)
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

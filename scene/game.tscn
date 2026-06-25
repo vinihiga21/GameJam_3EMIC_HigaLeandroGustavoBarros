@@ -7,12 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://dxptllbuvr5f0" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Background parts/4 - Tree_row_BG_1.png" id="5_17rxn"]
 [ext_resource type="Texture2D" uid="uid://pbrjsu053fs4" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Background parts/3 - Bottom_leaf_piles.png" id="6_yq8tf"]
 [ext_resource type="Texture2D" uid="uid://dvkl8rube0wyj" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/2 - Autumn Forest/Background parts/1 - Leaf_top.png" id="7_ym5sv"]
+[ext_resource type="PackedScene" uid="uid://b802e0r1bdnq2" path="res://inimigo.tscn" id="8_yq8tf"]
+[ext_resource type="Script" uid="uid://d1vwev4dxcwx6" path="res://final_do_level.gd" id="9_ym5sv"]
+[ext_resource type="Script" uid="uid://cbvwmksw88o4y" path="res://finalevel.gd" id="10_sng2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g16k"]
+size = Vector2(20, 237)
 
 [node name="forest" type="Node2D" unique_id=315719848]
 metadata/_edit_vertical_guides_ = [1759.0]
 
 [node name="player" parent="." unique_id=1669555507 instance=ExtResource("1_5kiuu")]
-position = Vector2(-78, 125)
+position = Vector2(1616, 127)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1832859141]
 position = Vector2(0, -1)
@@ -63,3 +69,18 @@ motion_mirroring = Vector2(288, 0)
 position = Vector2(142, 120.00001)
 scale = Vector2(1, 1.2259616)
 texture = ExtResource("7_ym5sv")
+
+[node name="jogador 2 kkkkkk" parent="." unique_id=475092728 instance=ExtResource("8_yq8tf")]
+position = Vector2(-6, 124)
+
+[node name="final do level" type="Area2D" parent="." unique_id=1044333549]
+position = Vector2(1769, -16)
+script = ExtResource("9_ym5sv")
+next_level = "snow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="final do level" unique_id=896082861]
+position = Vector2(4, 66)
+shape = SubResource("RectangleShape2D_5g16k")
+script = ExtResource("10_sng2h")
+
+[connection signal="body_entered" from="final do level" to="player" method="_on_final_do_level_body_entered"]

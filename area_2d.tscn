@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dmkckdivtulx1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nsakb"]
+radius = 19.0
+height = 60.0
+
+[node name="Area2D" type="Area2D" unique_id=978561349]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1024135460]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1154217930]
+position = Vector2(67, 61)
+shape = SubResource("CapsuleShape2D_nsakb")

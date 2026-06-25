@@ -5,6 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bxitjqnhj5t0b" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/3 - Big_mountain_BG.png" id="3_eqsfa"]
 [ext_resource type="Texture2D" uid="uid://bkv841153gsf1" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/2 - Smaller_mountains.png" id="4_ds6vs"]
 [ext_resource type="Texture2D" uid="uid://dlp3l5y3a6u3f" path="res://sprites/Seasonal Tilesets/Seasonal Tilesets/4 - Winter World/Background parts/1 - Snowy_foreground_area.png" id="5_1fe1m"]
+[ext_resource type="PackedScene" uid="uid://b802e0r1bdnq2" path="res://inimigo.tscn" id="6_w2m0y"]
+[ext_resource type="Script" uid="uid://d1vwev4dxcwx6" path="res://final_do_level.gd" id="7_orc7b"]
+[ext_resource type="Script" uid="uid://cbvwmksw88o4y" path="res://finalevel.gd" id="8_cmefg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6nl1"]
+size = Vector2(20, 237)
 
 [node name="Snow" type="Node2D" unique_id=770764142]
 position = Vector2(52, -1)
@@ -48,3 +54,15 @@ position = Vector2(4.7683716e-07, -36)
 scale = Vector2(1.0069444, 1.1826923)
 texture = ExtResource("5_1fe1m")
 centered = false
+
+[node name="jogador 2 kkkkkk" parent="." unique_id=475092728 instance=ExtResource("6_w2m0y")]
+position = Vector2(20, 60)
+
+[node name="final do level" type="Area2D" parent="." unique_id=336183450]
+position = Vector2(1769, -16)
+script = ExtResource("7_orc7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="final do level" unique_id=953442269]
+position = Vector2(-14, 12)
+shape = SubResource("RectangleShape2D_g6nl1")
+script = ExtResource("8_cmefg")

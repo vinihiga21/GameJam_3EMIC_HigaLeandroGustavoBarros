@@ -2,8 +2,18 @@
 
 [ext_resource type="Script" uid="uid://c2ubm1nhbjxb7" path="res://scripts/character_body_2d.gd" id="1_dwuph"]
 [ext_resource type="Texture2D" uid="uid://mp04ryufx8ss" path="res://sprites/Sprite Pack 6/1 - Penguin/Idle (16 x 16).png" id="2_fefws"]
+[ext_resource type="Texture2D" uid="uid://r0i7fevlnsti" path="res://sprites/Sprite Pack 6/1 - Penguin/Hurt (16 x 16).png" id="2_svect"]
 [ext_resource type="Texture2D" uid="uid://b5r7fr4hp13y8" path="res://sprites/Sprite Pack 6/1 - Penguin/Jump (16 x 16).png" id="3_0kr2c"]
+[ext_resource type="Texture2D" uid="uid://dkbsudvrlnipn" path="res://sprites/Sprite Pack 6/1 - Penguin/Lying_On_Ground (16 x 16).png" id="3_r52hb"]
 [ext_resource type="Texture2D" uid="uid://deat5lt3d1wk1" path="res://sprites/Sprite Pack 6/1 - Penguin/Waddling (16 x 16).png" id="4_46yv0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xiho"]
+atlas = ExtResource("2_svect")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipol7"]
+atlas = ExtResource("3_r52hb")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0kr2c"]
 atlas = ExtResource("2_fefws")
@@ -55,6 +65,17 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bb6e7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xiho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipol7")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0kr2c")
@@ -110,14 +131,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhc3d"]
 size = Vector2(14, 16)
 
-[node name="player" type="CharacterBody2D" unique_id=1669555507]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feslh"]
+size = Vector2(14, 16)
+
+[node name="pinguim" type="CharacterBody2D" unique_id=1669555507]
 script = ExtResource("1_dwuph")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1663907494]
 texture_filter = 1
 position = Vector2(109, 28)
 sprite_frames = SubResource("SpriteFrames_bb6e7")
-animation = &"idle"
+animation = &"dead"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2061687771]
@@ -129,6 +153,12 @@ limit_bottom = 198
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2040749575]
-visible = false
 position = Vector2(109, 28)
 shape = SubResource("RectangleShape2D_bhc3d")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=786520221]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=543793906]
+position = Vector2(109, 28)
+shape = SubResource("RectangleShape2D_feslh")
+debug_color = Color(0.95693463, 5.7756904e-07, 0.53787434, 0.41960785)
